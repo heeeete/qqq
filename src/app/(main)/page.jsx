@@ -27,7 +27,7 @@ export default async function Page() {
   console.log('HELLLLLLLLLLLLLLLLL');
   const queryClient = new QueryClient();
   try {
-    await queryClient.prefetchQuery({ queryKey: ['recentProducts'], queryFn: () => getRecentProducts() });
+    await queryClient.prefetchQuery({ queryKey: ['recentProducts'], queryFn: getRecentProducts });
     console.log('recent Products prefetchQuery 실행');
   } catch (error) {
     console.error('recent Products prefetchQuery 실행 중 에러 발생:', error);
