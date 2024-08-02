@@ -2,6 +2,8 @@ import RenderHome from './RenderHome';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import getRecentProducts from './_lib/getRecentProducts';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }) {
   const product = await getRecentProducts();
 
