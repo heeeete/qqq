@@ -2,6 +2,27 @@ import RenderHome from './RenderHome';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import getRecentProducts from './_lib/getRecentProducts';
 
+export async function generateMetadata({ params }) {
+  const product = await getRecentProducts();
+
+  return {
+    title: product ? `${product[0].title}ㅣKEYNUT` : 'KEYNUT',
+    description: product ? `${product[0].description}` : '다양한 전자기기를 한눈에',
+    openGraph: {
+      title: product ? `${product[0].title}ㅣKEYNUT` : 'KEYNUT',
+      description: product ? `${product[0].description}` : '상품을 찾을 수 없습니다.',
+      images: [
+        {
+          url: product ? product[0].images[0] : `${process.env.NEXT_PUBLIC_BASE_URL}/keynut.png`,
+          width: 100,
+          height: 100,
+          alt: 'KEYNUT Logo',
+        },
+      ],
+    },
+  };
+}
+
 export default async function Page() {
   console.log('HELLLLLLLLLLLLLLLLL');
   const queryClient = new QueryClient();
