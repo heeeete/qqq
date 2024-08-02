@@ -2,6 +2,8 @@ import { connectDB } from '@/lib/mongodb';
 import { create } from 'domain';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const client = await connectDB;
 const db = client.db(process.env.MONGODB_NAME);
 const products = db.collection('products');
