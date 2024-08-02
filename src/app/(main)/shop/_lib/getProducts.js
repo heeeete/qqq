@@ -14,6 +14,7 @@ const getProducts = async (queryString, pageParam) => {
     const res = await fetch(url, {
       next: { tags: ['products'] },
     });
+    console.log('SHOP!!!!!!!!!!! PREFATCH!!!!!!!!!');
 
     if (!res.ok) {
       console.error('API 요청 실패:', res.status, res.statusText);
