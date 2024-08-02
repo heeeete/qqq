@@ -10,13 +10,7 @@ import { Gowun_Dodum } from 'next/font/google';
 
 const title = Gowun_Dodum({ subsets: ['latin'], weight: ['400'] });
 
-const JustIn = () => {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['recentProducts'],
-    queryFn: getRecentProducts,
-    staleTime: 1000 * 30,
-  });
-
+const JustIn = ({ data }) => {
   return (
     <section className="flex flex-col space-y-5">
       <div className="flex items-end">
@@ -181,6 +175,11 @@ const Categories = () => {
 };
 
 export default function RenderHome() {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['recentProducts'],
+    queryFn: getRecentProducts,
+  });
+
   return (
     <div className="flex flex-col w-full max-md:main-768 -translate-y-6">
       <Link
@@ -193,7 +192,7 @@ export default function RenderHome() {
       </Link>
       <div className="w-full max-w-screen-xl mx-auto px-10  space-y-12 my-10 max-md:px-3 ">
         <Categories />
-        <JustIn />
+        <JustIn data={data} />
       </div>
       {/* <section className="flex flex-col space-y-5">
         <div className="flex items-end">
